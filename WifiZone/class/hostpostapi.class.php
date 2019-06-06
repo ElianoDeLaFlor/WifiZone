@@ -4,7 +4,8 @@
     {
         public $baseuri; 
         public $apikey; 
-        public $secret;  
+        public $secret;
+
     
         public function __construct(){
             
@@ -37,4 +38,3 @@
         }
     
     }
-?>
