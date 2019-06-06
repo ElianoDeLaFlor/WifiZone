@@ -7,9 +7,10 @@
         public $secret;  
     
         public function __construct(){
-            $BaseUri = "http://technology.afstrel.com/api/v1/";
-            $apikey = "N4TN9PD9D6W2RV95X2YNR8R8XW1VBGRN"; 
-        $secret = "65X6HY5LVR76661TYN39LH841YP1219Y";  
+            
+            this->$BaseUri = "http://technology.afstrel.com/api/v1/";
+            this->$apikey = "N4TN9PD9D6W2RV95X2YNR8R8XW1VBGRN"; 
+            this->$secret = "65X6HY5LVR76661TYN39LH841YP1219Y";  
         }
 
         //   Encryption vector initialization    
@@ -30,7 +31,7 @@
         $oStdClass = json_decode(file_get_contents($url)); 
     
         print_r($oStdClass);
-    
+    // crées l'utilisateur
         public function CreateUser($username,$password){
             $url = $BaseUri ."setuserdata" ."/apikey=" .$apikey ."/" ."sparam=" .Encrypt("domainid=568/username=$username/password=$password/productid=958/acceptmkt=1/terms=1/setlanguage=fr"); 
         }
