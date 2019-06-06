@@ -43,6 +43,7 @@
             //creation du compte
             $client = New Client();
             $IdClient = $client->InsertClient($accountLogin, $accountPassword, $telClient);
+            //creation du compte au niveau du hostpost api
             //livraison du ticket sur le compte par mise à jour de la ligne du ticket
             $ticket = new Ticket();
             $status_livraison = $ticket->TicketLivraison($typeTicketAsked, $IdClient, $PayementNum);
