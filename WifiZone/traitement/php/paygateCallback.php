@@ -5,6 +5,7 @@
     include_once '../../class/client.class.php';
     include_once '../../class/dbConnexion.class.php';
     include_once '../../class/httpRequester.class.php';
+    include_once '../../class/hostpostapi.class.php';
 
     //=========téléchargement de données envoyer au callback par PAYGATE===========
     $json = file_get_contents('php://input');
@@ -43,7 +44,13 @@
             //creation du compte
             $client = New Client();
             $IdClient = $client->InsertClient($accountLogin, $accountPassword, $telClient);
+
+            
             //creation du compte au niveau du hostpost api
+            $userapi=new  HostpostAPI();
+            $userapi->CreateUser($accountLogin, $accountPassword);
+
+
             //livraison du ticket sur le compte par mise à jour de la ligne du ticket
             $ticket = new Ticket();
             $status_livraison = $ticket->TicketLivraison($typeTicketAsked, $IdClient, $PayementNum);
