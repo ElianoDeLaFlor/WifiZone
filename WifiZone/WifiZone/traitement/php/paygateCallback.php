@@ -44,7 +44,6 @@
             //creation du compte
             $client = New Client();
             $IdClient = $client->InsertClient($accountLogin, $accountPassword, $telClient);
-
             
             //creation du compte au niveau du hostpost api
             $userapi=new  HostpostAPI();
