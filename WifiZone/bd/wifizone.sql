@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 29 avr. 2019 à 09:12
+-- Généré le :  ven. 07 juin 2019 à 13:46
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
   `IdClient` int(11) NOT NULL AUTO_INCREMENT,
+  `IdClientInHotspotSoftware` varchar(10) NOT NULL,
   `LoginClient` varchar(50) NOT NULL,
   `MdpClient` varchar(1000) NOT NULL,
   `TelClient` varchar(25) NOT NULL,
@@ -43,10 +44,10 @@ CREATE TABLE IF NOT EXISTS `client` (
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`IdClient`, `LoginClient`, `MdpClient`, `TelClient`, `ResetCode`) VALUES
-(1, 'sylvain91', '$2y$10$PANKhF2Jabnx9dAWI1X2KeZ1Fdw4dfzHD2.Eu8eWQcknZa.peWvbO', '92415513', ''),
-(2, 'login', 'qwerty', '', ''),
-(5, 'loginh', 'qwerty', '', '');
+INSERT INTO `client` (`IdClient`, `IdClientInHotspotSoftware`, `LoginClient`, `MdpClient`, `TelClient`, `ResetCode`) VALUES
+(1, '', 'sylvain91', '$2y$10$PANKhF2Jabnx9dAWI1X2KeZ1Fdw4dfzHD2.Eu8eWQcknZa.peWvbO', '92415513', ''),
+(2, '', 'login', 'qwerty', '', ''),
+(5, '', 'loginh', 'qwerty', '', '');
 
 -- --------------------------------------------------------
 
@@ -64,19 +65,28 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `FK_IdTypeTicket` int(11) NOT NULL,
   `FK_IdClient` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`IdTicket`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=399 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ticket`
 --
 
 INSERT INTO `ticket` (`IdTicket`, `CodeTicket`, `DateCreationTicket`, `PayementNum`, `DateAchatTicket`, `FK_IdTypeTicket`, `FK_IdClient`) VALUES
-(1, '23HJFH4', '2019-03-01 00:00:00', '94834505', '2019-04-03 00:00:00', 1, 1),
-(3, '74JHFH8', '2019-04-01 00:00:00', '98765645', '2019-04-07 14:50:20', 1, 2),
-(4, 'KJDHJFD', '2019-04-01 00:00:00', '98765645', '2019-04-07 14:51:06', 1, 3),
-(5, '65HGF4FD', '2019-04-01 00:00:00', '', NULL, 1, 0),
-(6, 'RFDRTY87', '2019-04-01 00:00:00', '98765645', '2019-04-07 15:13:40', 2, 1),
-(7, '908GFT', '2019-04-01 00:00:00', '', NULL, 1, 0);
+(398, 'D7RG', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(397, '54Y8', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(396, '1YM5', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(395, 'B99Z', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(394, 'D4BJ', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(393, '11D6', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(392, '5Y9N', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(391, 'BQ4Y', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(390, 'GNPT', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(389, 'HMW4', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(388, 'Y1YY', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(387, 'GL94', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(386, 'JR3J', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(385, 'TD13', '2019-05-04 23:21:05', '', NULL, 2, 0),
+(384, 'XT4R', '2019-05-04 23:21:05', '', NULL, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -87,6 +97,7 @@ INSERT INTO `ticket` (`IdTicket`, `CodeTicket`, `DateCreationTicket`, `PayementN
 DROP TABLE IF EXISTS `typeticket`;
 CREATE TABLE IF NOT EXISTS `typeticket` (
   `IdTypeTicket` int(11) NOT NULL AUTO_INCREMENT,
+  `idTypeTicketInHotspotSoftware` varchar(10) NOT NULL,
   `ReferenceTypeTicket` varchar(50) NOT NULL,
   `TimeTypeTicket` varchar(50) NOT NULL,
   `DownSpeedTypeTicket` varchar(50) NOT NULL,
@@ -100,10 +111,10 @@ CREATE TABLE IF NOT EXISTS `typeticket` (
 -- Déchargement des données de la table `typeticket`
 --
 
-INSERT INTO `typeticket` (`IdTypeTicket`, `ReferenceTypeTicket`, `TimeTypeTicket`, `DownSpeedTypeTicket`, `MontantTypeTicket`, `ValiditeTypeTicket`) VALUES
-(1, 'STANDARD', '24H', '0.5Mbs', 300, '1 Jour'),
-(2, 'START', '24H', '1Mbs', 500, '1 Jour'),
-(3, 'PREMIUM', '24H', '3.5Mbs', 1000, '1 Jour');
+INSERT INTO `typeticket` (`IdTypeTicket`, `idTypeTicketInHotspotSoftware`, `ReferenceTypeTicket`, `TimeTypeTicket`, `DownSpeedTypeTicket`, `MontantTypeTicket`, `ValiditeTypeTicket`) VALUES
+(1, '', 'STANDARD', '24H', '0.5Mbs', 300, '1 Jour'),
+(2, '958', 'START', '24H', '1Mbs', 500, '1 Jour'),
+(3, '', 'PREMIUM', '24H', '3.5Mbs', 1000, '1 Jour');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

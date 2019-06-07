@@ -51,7 +51,7 @@ class Ticket
         try{
             $conn=Connection::getInstance();
             //-----------------
-            $con= $conn->prepare("UPDATE ticket SET FK_IdClient = :IdClient, DateAchatTicket = now(), PayementNum = :PayementNum WHERE IdTicket = :IdTicket");
+            $con= $conn->prepare("UPDATE ticket SET FK_IdClient = :IdClient, DateAchatTicket = UTC_TIMESTAMP(), PayementNum = :PayementNum WHERE IdTicket = :IdTicket");
             $con->execute(array(
                 "IdClient" => $IdClient,
                 "IdTicket" => $IdTicket,

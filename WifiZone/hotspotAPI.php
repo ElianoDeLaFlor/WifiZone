@@ -50,7 +50,10 @@
     // $url = $BaseUri ."getuserconnectionstatus" ."/apikey=" .$apikey ."/" ."sparam=" .Encrypt("username=123456@domainname"); 
 
     //   Add or modify a user    
-    $url = $BaseUri ."setuserdata" ."/apikey=" .$apikey ."/" ."sparam=" .Encrypt("domainid=568/username=sylain92@Groupe33/password=1234/productid=958/acceptmkt=1/terms=1/setlanguage=fr"); 
+    $url = $BaseUri ."setuserdata" ."/apikey=" .$apikey ."/" ."sparam=" .Encrypt("domainid=568/username=333333@Groupe33/password=1234/productid=958/acceptmkt=1/terms=1/setlanguage=fr"); 
+
+    //   get user data by username    
+    // $url = $BaseUri ."getuserdatabyusername" ."/apikey=" .$apikey ."/" ."sparam=" .Encrypt("username=iii@Groupe33"); 
 
     //   Create cards    
     // $url = $BaseUri ."createcards" ."/apikey=" .$apikey ."/" ."sparam=" .Encrypt("domainid=1/productid=64/sellprice=5/language=en/quantity=3"); 
@@ -64,8 +67,8 @@
     //   *********************************************************************************************************
 
     //   Exec the GET call    
-    $oStdClass = json_decode(file_get_contents($url)); 
+    $oStdClass = json_decode(file_get_contents($url), true); 
 
-    print_r($oStdClass); 
+    echo $oStdClass['id']; 
 
 ?>

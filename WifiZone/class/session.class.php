@@ -19,6 +19,7 @@
             //demarrage de la session
             if(session_start()){
                 $_SESSION['IdClient'] = $client_objet->IdClient;
+                $_SESSION['IdClientInHotspotSoftware'] = $client_objet->IdClientInHotspotSoftware;
                 $_SESSION['LoginClient'] = $client_objet->LoginClient;
                 $_SESSION['session_status'] = 'success159643';
                 //retourner true apres

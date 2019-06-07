@@ -6,6 +6,7 @@ include_once 'session.class.php';
 class Client
 {
     public $IdClient;
+    public $IdClientInHotspotSoftware;
     public $LoginClient;
     public $MdpClient;
     public $TelClient;
@@ -46,6 +47,7 @@ class Client
             ));
             $row = $con->fetch();
             $this->IdClient = $row['IdClient'];
+            $this->IdClientInHotspotSoftware = $row['IdClientInHotspotSoftware'];
             $this->LoginClient = $row['LoginClient'];
             $this->MdpClient = $row['MdpClient'];
             $this->TelClient = $row['TelClient'];
@@ -172,6 +174,36 @@ class Client
             $clientUpdateQuery->execute(array(
                 "telClient" => $telClient,
                 "IdClient" => $_SESSION['IdClient']
+            ));
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+
+    // public function UpdateClient($FieldToUpdate, $UpdateValue, $ConditionnalField, $ConditionnalValue){
+    //     try{
+    //         $conn=Connection::getInstance();
+    //         $clientUpdateQuery = $conn->prepare('UPDATE client SET "'.$FieldToUpdate.'" = :UpdateValue WHERE "'.$ConditionnalField.'" = :ConditionnalValue');
+    //         $clientUpdateQuery->execute(array(
+    //             // "FieldToUpdate" => $FieldToUpdate,
+    //             "UpdateValue" => $UpdateValue,
+    //             // "ConditionnalField" => $ConditionnalField,
+    //             "ConditionnalValue" => $ConditionnalValue
+    //         ));
+    //         return true;
+    //     }catch(PDOException $e){
+    //         return false;
+    //     }
+    // }
+
+    public function UpdateClientIdClientInHotspotSoftware($IdClientInHotspotSoftware, $IdClient){//password update
+        try{
+            $conn=Connection::getInstance();
+            $clientUpdateQuery = $conn->prepare("UPDATE client SET IdClientInHotspotSoftware = :IdClientInHotspotSoftware WHERE IdClient = :IdClient");
+            $clientUpdateQuery->execute(array(
+                "IdClientInHotspotSoftware" => $IdClientInHotspotSoftware,
+                "IdClient" => $IdClient
             ));
             return true;
         }catch(PDOException $e){

@@ -2,6 +2,7 @@
 <?php
 
     include_once '../../class/ticket.class.php';
+    include_once '../../class/typeTicket.class.php';
     include_once '../../class/client.class.php';
     include_once '../../class/dbConnexion.class.php';
     include_once '../../class/httpRequester.class.php';
@@ -44,15 +45,22 @@
             //creation du compte
             $client = New Client();
             $IdClient = $client->InsertClient($accountLogin, $accountPassword, $telClient);
-            
-            //creation du compte au niveau du hostpost api
-            $userapi=new  HostpostAPI();
-            $userapi->CreateUser($accountLogin, $accountPassword);
-
 
             //livraison du ticket sur le compte par mise à jour de la ligne du ticket
             $ticket = new Ticket();
             $status_livraison = $ticket->TicketLivraison($typeTicketAsked, $IdClient, $PayementNum);
+
+            //creation du compte au niveau du hostpost api
+            $userapi=new  HostpostAPI();
+            $NewTypeTicketObjet = new TypeTicket;
+            $allDataByTypeTicket = $NewTypeTicketObjet->SelectTypeTicket($typeTicketAsked);
+            $idTypeTicketInHotspotSoftware = $NewTypeTicketObjet->idTypeTicketInHotspotSoftwareObjet;
+            $createUserReturnData = $userapi->CreateUser($accountLogin, $accountPassword, $idTypeTicketInHotspotSoftware);
+
+            //mise du compte dans l'interface du payement avec le ID client généré par l'API et stocké dans le logiciel de hotspot
+            // $client->UpdateClient("IdClientInHotspotSoftware", $createUserReturnData['id'], "IdClient", $IdClient);
+            $updateclient = $client->UpdateClientIdClientInHotspotSoftware($createUserReturnData['id'], $IdClient);
+
         }
 
         //cas de recharge de compte

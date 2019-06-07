@@ -6,6 +6,7 @@
     class TypeTicket{
 
         public $IdTypeTicket;
+        public $idTypeTicketInHotspotSoftware;
         public $ReferenceTypeTicket;
         public $TimeTypeTicket;
         public $DownSpeedTypeTicket;
@@ -20,6 +21,7 @@
         //========================================
         //========================================
         public function SelectTypeTicket($typeTicketAsked){
+
             $conn=Connection::getInstance();
 
             $typeTicketChoisi = $conn->prepare("SELECT * FROM typeticket WHERE ReferenceTypeTicket = :typeTicketAsked");
@@ -30,6 +32,7 @@
             $row = $typeTicketChoisi->fetch();
 
             $this->IdTypeTicket = $row['IdTypeTicket'];
+            $this->idTypeTicketInHotspotSoftware = $row['idTypeTicketInHotspotSoftware'];
             $this->ReferenceTypeTicket = $row['ReferenceTypeTicket'];
             $this->TimeTypeTicket = $row['TimeTypeTicket'];
             $this->DownSpeedTypeTicket = $row['DownSpeedTypeTicket'];
