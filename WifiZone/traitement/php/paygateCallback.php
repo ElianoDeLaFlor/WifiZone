@@ -50,7 +50,7 @@
             $ticket = new Ticket();
             $status_livraison = $ticket->TicketLivraison($typeTicketAsked, $IdClient, $PayementNum);
 
-            //creation du compte au niveau du hostpost api
+            //creation du compte au niveau du hostpot api
             $userapi=new  HostpostAPI();
             $NewTypeTicketObjet = new TypeTicket;
             $allDataByTypeTicket = $NewTypeTicketObjet->SelectTypeTicket($typeTicketAsked);
@@ -69,6 +69,8 @@
             //livraison du ticket sur le compte par mise à jour de la ligne du ticket
             $ticket = new Ticket();
             $status_livraison = $ticket->TicketLivraison($typeTicketAsked, $IdClient, $PayementNum);
+
+            //Recharge du compte auniveau du hostpot api
         }
         
     }
